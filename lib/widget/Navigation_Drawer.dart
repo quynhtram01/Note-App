@@ -20,9 +20,9 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final name = 'K Vang';
-    final email = 'kvang05112002@gmail.com';
-    final urlImage = 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80';
+    final name = 'K Vảng';
+    final email = 'kvang@gmail.com';
+    final urlImage = 'https://scontent.fsgn2-4.fna.fbcdn.net/v/t39.30808-1/271994466_629614554954524_6645492065121295390_n.jpg?stp=dst-jpg_s320x320&_nc_cat=101&ccb=1-5&_nc_sid=7206a8&_nc_ohc=sa8e7LuPQ0YAX9tzjlK&_nc_ht=scontent.fsgn2-4.fna&oh=00_AT8Ff-V7ClLRcCwBu8dI-ga_zP1gZRkGg3-vvIkKLKMoyA&oe=6233A327';
 
     return Drawer(
       child: Material(
@@ -38,46 +38,55 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                     name: 'K Vang',
                     urlImage: urlImage,
                   ),
-                ))
+                )),
             ),
-            const SizedBox(height: 48),
-            buildMenuItem(
-              text: 'Ghi chú',
-              icon: Icons.lightbulb_outlined,
-              onClicked: () => selectedItem(context, 0),
-            ),
-            const SizedBox(height: 16),
-            buildMenuItem(
-              text: 'Lời nhắc',
-              icon: Icons.alarm_add_sharp,
-              onClicked: () => selectedItem(context, 1),/**/
-            ),
-            const SizedBox(height: 16),
-            buildMenuItem(
-              text: 'Lưu trữ',
-              icon: Icons.save_alt_rounded,
-              onClicked: () => selectedItem(context, 2),
-            ),
-            const SizedBox(height: 16),
-            buildMenuItem(
-              text: 'Thùng rác',
-              icon: Icons.delete_rounded,
-              onClicked: () => selectedItem(context, 3),
-            ),
-            const SizedBox(height: 16),
-            buildMenuItem(
-              text: 'Cài đặt',
-              icon: Icons.settings,
-              onClicked: () => selectedItem(context, 4),
-            ),
-            const SizedBox(height: 24),
-            Divider(color: Colors.white70),
+            Container(
+              padding: padding,
+              child: Column(
+                children: [
+                  const SizedBox(height: 12),
+                  buildSearchField(),
+                  const SizedBox(height: 48),
+                  buildMenuItem(
+                    text: 'Ghi chú',
+                    icon: Icons.lightbulb_outlined,
+                    onClicked: () => selectedItem(context, 0),
+                  ),
+                  const SizedBox(height: 16),
+                  buildMenuItem(
+                    text: 'Lời nhắc',
+                    icon: Icons.alarm_add_sharp,
+                    onClicked: () => selectedItem(context, 1),/**/
+                  ),
+                  const SizedBox(height: 16),
+                  buildMenuItem(
+                    text: 'Lưu trữ',
+                    icon: Icons.save_alt_rounded,
+                    onClicked: () => selectedItem(context, 2),
+                  ),
+                  const SizedBox(height: 16),
+                  buildMenuItem(
+                    text: 'Thùng rác',
+                    icon: Icons.delete_rounded,
+                    onClicked: () => selectedItem(context, 3),
+                  ),
+                  const SizedBox(height: 16),
+                  buildMenuItem(
+                    text: 'Cài đặt',
+                    icon: Icons.settings,
+                    onClicked: () => selectedItem(context, 4),
+                  ),
+                  const SizedBox(height: 24),
+                  Divider(color: Colors.white70),
 
-            const SizedBox(height: 24),
-            buildMenuItem(
-              text: 'Trợ giúp và phản hồi',
-              icon: Icons.build_circle,
-              onClicked: () => selectedItem(context, 5),
+                  const SizedBox(height: 24),
+                  buildMenuItem(
+                    text: 'Trợ giúp và phản hồi',
+                    icon: Icons.build_circle,
+                    onClicked: () => selectedItem(context, 5),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -176,4 +185,28 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
           ),
         ),
       );
+
+  buildSearchField() {
+    final color = Colors.white;
+
+    return TextField(
+      style: TextStyle(color: color),
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        hintText: 'Search',
+        hintStyle: TextStyle(color: color),
+        prefixIcon: Icon(Icons.search, color: color),
+        filled: true,
+        fillColor: Colors.white12,
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5),
+          borderSide: BorderSide(color: color.withOpacity(0.7)),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5),
+          borderSide: BorderSide(color: color.withOpacity(0.7)),
+        ),
+      ),
+    );
+  }
 }

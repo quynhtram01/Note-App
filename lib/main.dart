@@ -34,8 +34,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-
-
   void _incrementCounter() {
     setState(() {
       _counter++;
@@ -46,8 +44,11 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) => Scaffold(
       drawer: const NavigationDrawerWidget(),
       appBar: AppBar(
-        title: Text(widget.title),
+        title: buildSearchFile(),
       ),
+      //body: Center(
+      //  child: _widgetOptions.elementAt(_selectedIndex),
+      //),
       floatingActionButton: FloatingActionButton(
         tooltip: 'Increment',
         child: Icon(Icons.add),
@@ -61,26 +62,52 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: Icon(Icons.access_time),
             label: 'check',
             backgroundColor: Colors.black54,
-
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.delete),
-            label: 'delete',
-            backgroundColor: Colors.black54,
+            icon: Icon(Icons.mic_none),
+            label: 'mic',
+            backgroundColor: Colors.greenAccent,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.palette_outlined),
             label: 'paint',
-            backgroundColor: Colors.black54,
+            backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.panorama),
             label: 'images',
-            backgroundColor: Colors.black54,
+            backgroundColor: Colors.purple,
           ),
         ],
-      )
+        //currentIndex: _selectedIndex,
+        //selectedItemColor: Colors.amber[800],
+       // onTap: _onItemTapped,
+  )
   );
+
+  buildSearchFile() {
+    final color = Colors.white;
+
+    return TextField(
+      style: TextStyle(color: color),
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        hintText: 'Search',
+        hintStyle: TextStyle(color: color),
+        prefixIcon: Icon(Icons.search, color: color),
+        filled: true,
+        fillColor: Colors.white12,
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5),
+          borderSide: BorderSide(color: color.withOpacity(0.7)),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5),
+          borderSide: BorderSide(color: color.withOpacity(0.7)),
+        ),
+      ),
+    );
+  }
 }
 
 class CustomListTile extends StatelessWidget{

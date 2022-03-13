@@ -63,8 +63,8 @@ class _NoteState extends State<Note> {
             backgroundColor: Colors.black54,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(Icons.panorama),
+            label: 'images',
             backgroundColor: Colors.black54,
           ),
         ],

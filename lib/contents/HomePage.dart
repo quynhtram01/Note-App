@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:note_app/widget/Navigation_Drawer.dart';
 import '../main.dart';
+import '../navigation/CheckPage.dart';
+import '../navigation/ImagesPage.dart';
+import '../navigation/MicPage.dart';
+import '../navigation/PaintPage.dart';
 import 'Note.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,6 +16,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List pages = [
+    CheckPage(),
+    MicPage(),
+    PaintPage(),
+    ImagesPage()
+  ];
+  int _currentIndex=0;
+  void onTap(int index){
+    setState((){
+      _currentIndex = index;
+    });
+  }
   @override
   Widget build(BuildContext context) => Scaffold(
       drawer: const NavigationDrawerWidget(),
@@ -22,17 +38,18 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(MyApp.themeNotifier.value == ThemeMode.light
                 ? Icons.dark_mode
                 : Icons.light_mode ),
-            onPressed: () {
-              MyApp.themeNotifier.value =
+            onPressed: () {MyApp.themeNotifier.value =
                   MyApp.themeNotifier.value == ThemeMode.light
                   ? ThemeMode.dark
                   : ThemeMode.light;
             })
         ],
       ),
-      //body: Center(
-      //  child: _widgetOptions.elementAt(_selectedIndex),
-      //),
+      body: Center(
+        child: pages[_currentIndex],
+      ),
+
+     // pages[_currentIndex],
       floatingActionButton: FloatingActionButton(
         tooltip: 'Increment',
         child: Icon(Icons.add),
@@ -41,31 +58,34 @@ class _HomePageState extends State<HomePage> {
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.shifting,
+        onTap: onTap,
+        currentIndex: _currentIndex,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.access_time),
-            label: 'check',
+            title: Text('Check list'),
             backgroundColor: Colors.black,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.mic_none),
-            label: 'mic',
+            title: Text('Micro'),
             backgroundColor: Colors.greenAccent,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.palette_outlined),
-            label: 'paint',
+            title: Text('Paint'),
             backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.panorama),
-            label: 'images',
+            title: Text('Images'),
             backgroundColor: Colors.purple,
           ),
         ],
         //currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
-        // onTap: _onItemTapped,
+       // onTap: _onItemTapped,
       )
     );
 
@@ -93,3 +113,4 @@ class _HomePageState extends State<HomePage> {
     );
   }
   }
+
